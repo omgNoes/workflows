@@ -3,20 +3,20 @@ on:
   workflow_call:
     inputs:
       name:
-        description: 'Input description'
+        description: "Input description"
         type: string
-        default: 'Ali'
+        default: "Ali"
         required: false
     secrets:
       access-token:
-        description: 'Secret description'
+        description: "Secret description"
         required: true
 
 jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ls -a
   log-context-and-inputs:
     runs-on: ubuntu-latest
@@ -24,6 +24,6 @@ jobs:
       - name: Display Github Context
         run: echo '${{ toJson(github) }}'
       - name: Display name input
-        run: echo ${{ inputs.name }}
+        run: echo "${{ inputs.name }}"
       - name: Display access-token secret
-        run: echo ${{ secrets.access-token }} # DONT DO THIS
+        run: echo "${{ secrets.access-token }}" # DONT DO THIS
